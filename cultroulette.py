@@ -5,7 +5,6 @@ import winsound
 from colorama import Fore, Style
 colorama.init()
 
-ANGEL_INTERVAL = 6
 MAX_HEALTH = 10
 
 playerHealth = MAX_HEALTH
@@ -480,6 +479,7 @@ while True:
         print("Thanks to the hero, the chosen one.")
         break
 
+    load = False
     turn += 1
     if bullets == []:
         bullets = random.choices([True, False], k=random.randint(1, 8))
@@ -492,9 +492,9 @@ while True:
         enemybullets = bullets.count(True)
         enemyblanks = bullets.count(False)
         time.sleep(1)
-
+        load = True
     
-    if ((lastsummon if lastsummon != None else turn) % ANGEL_INTERVAL == 0) or summonAngels:
+    if load or summonAngels:
         print("The spirit angels come bearing gifts.")
         play_sound("angelic")
         time.sleep(1)

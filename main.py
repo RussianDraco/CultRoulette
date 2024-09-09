@@ -1,7 +1,6 @@
 import random
 import time
 import colorama
-import winsound
 from colorama import Fore, Style
 colorama.init()
 
@@ -24,8 +23,6 @@ enemyitems = []
 
 bullets = [] #max : 8
 
-def play_sound(name):
-    winsound.PlaySound("sounds/" + name + ".wav", winsound.SND_FILENAME)
 def colorprint(text, color):
     print(color + text + Style.RESET_ALL)
 def display_stats():
@@ -276,7 +273,6 @@ def heavens_horn(player):
         enemyitems.remove("heavens horn")
     time.sleep(1)
     print("Heaven has summoned the angels.")
-    play_sound("horn")
     summonAngels = True
 def morph_key(player):
     global playerHealth
@@ -496,7 +492,6 @@ while True:
     
     if load or summonAngels:
         print("The spirit angels come bearing gifts.")
-        play_sound("angelic")
         time.sleep(1)
         t = "You are given a "
         for x in range(2):
@@ -551,11 +546,9 @@ while True:
                     action = input()
 
                 print("Chk-chk...")
-                play_sound("reload")
                 time.sleep(1) 
                 if bullets.pop(0):
                     print("POW - The cursed bullet hits Seth in the chest as he roars in pain.")
-                    play_sound("gunshot")
                     if revolverSharded:
                         print("The hell shard amplifies the shot.")
                         enemyHealth -= 1
@@ -564,7 +557,6 @@ while True:
                     enemybullets -= 1
                 else:
                     print("Pft - The empty shell falls in your lap.")
-                    play_sound("blank")
                     enemyblanks -= 1
                 lastturnskip = False
                 break
@@ -572,11 +564,9 @@ while True:
             action = input()
             if action == "shoot":
                 print("Chk-chk...")
-                play_sound("reload")
                 time.sleep(1)
                 if bullets.pop(0):
                     print("POW - The cursed bullet hits Seth in the chest as he roars in pain.")
-                    play_sound("gunshot")
                     if revolverSharded:
                         print("The hell shard amplifies the shot.")
                         enemyHealth -= 1
@@ -585,12 +575,10 @@ while True:
                     enemyHealth -= 1
                 else:
                     print("Pft - The empty shell falls in your lap.")
-                    play_sound("blank")
                     enemyblanks -= 1
                 break
             elif action == "skip":
                 print("You drop the revolver.")
-                play_sound("gundrop")
                 lastturnskip = True
                 break
             elif action in playeritems:
@@ -614,7 +602,6 @@ while True:
     else:
         time.sleep(0.5)
         colorprint("It is the Seth's turn.", Fore.RED)
-        play_sound("growl")
 
         if enemycannotitem:
             if random.random() > 0.6:
@@ -718,11 +705,9 @@ while True:
 
             if action == "shoot":
                 print("Chk-chk...")
-                play_sound("reload")
                 time.sleep(1)
                 if bullets.pop(0):
                     print("POW - Seth aims at you and fires a dark bullet straight at your heart. You feel pain.")
-                    play_sound("gunshot")
                     if revolverSharded:
                         print("The hell shard amplifies the shot.")
                         playerHealth -= 1
@@ -731,13 +716,11 @@ while True:
                     enemybullets -= 1
                 else:
                     print("Pft - A blank falls out of the chamber.")
-                    play_sound("blank")
                     enemyblanks -= 1
                 lastturnskip = False
                 break
             elif action == "skip":
                 print("Seth laughs and tosses you the revolver.")
-                play_sound("gundrop")
                 lastturnskip = True
                 break
             else:

@@ -1,5 +1,1 @@
-random
-time
-colorama
-winsound
 colorama
